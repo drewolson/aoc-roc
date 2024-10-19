@@ -1,4 +1,4 @@
-# Aoc in Roc
+# Advent of Code in Roc
 
 ```
 roc run -- --help

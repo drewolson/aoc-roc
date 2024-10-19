@@ -1,7 +1,6 @@
 module [run]
 
 import pf.File
-import pf.Stdout
 import Aoc.Args exposing [Args]
 import Aoc.Runner.Year2023 as Year2023
 import Aoc.Runner.Year2024 as Year2024
@@ -31,4 +30,4 @@ run = \args ->
     when args is
         { year: 2023, day, part } -> Year2023.run! day part input
         { year: 2024, day, part } -> Year2024.run! day part input
-        { year, day: _, part: _ } -> Stdout.line! "Unknown year: $(Num.toStr year)"
+        { year, day: _, part: _ } -> Task.err (BadYear year)
