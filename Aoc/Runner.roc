@@ -1,19 +1,34 @@
 module [run]
 
+import pf.File
 import pf.Stdout
-import Aoc.Args exposing [Args, Part]
+import Aoc.Args exposing [Args]
+import Aoc.Runner.Year2023 as Year2023
+import Aoc.Runner.Year2024 as Year2024
 
-run2023 : U8, Part -> Task {} _
-run2023 = \_day, _part ->
-    Stdout.line! "2023"
+readInput : Args -> Task Str _
+readInput = \{ year, day } ->
+    pad = \str ->
+        if Str.countUtf8Bytes str == 1 then
+            Str.concat "0" str
+        else
+            str
 
-run2024 : U8, Part -> Task {} _
-run2024 = \_day, _part ->
-    Stdout.line! "2024"
+    yearStr = Num.toStr year
+
+    dayStr = day |> Num.toStr |> pad
+
+    path = "./data/$(yearStr)/day$(dayStr).txt"
+
+    path
+    |> File.readUtf8
+    |> Task.mapErr \_ -> BadInput path
 
 run : Args -> Task {} _
 run = \args ->
+    input = readInput! args
+
     when args is
-        { year: 2023, day, part } -> run2023! day part
-        { year: 2024, day, part } -> run2024! day part
+        { year: 2023, day, part } -> Year2023.run! day part input
+        { year: 2024, day, part } -> Year2024.run! day part input
         { year, day: _, part: _ } -> Stdout.line! "Unknown year: $(Num.toStr year)"
