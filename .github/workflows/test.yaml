@@ -10,8 +10,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-  steps:
-    - uses: hasnep/setup-roc@main
-      with:
-        roc-version: nightly
-    - run: roc test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hasnep/setup-roc@main
+        with:
+          roc-version: nightly
+      - run: roc test
