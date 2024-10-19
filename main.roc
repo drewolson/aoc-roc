@@ -34,7 +34,8 @@ cli =
     partOpt =
         parser = \str ->
             when Str.toU8 str is
-                Ok part if part == 1 || part == 2 -> Ok part
+                Ok 1 -> Ok One
+                Ok 2 -> Ok Two
                 _ -> Err (InvalidValue "$(str) is not a valid part")
 
         Opt.single { short: "p", long: "part", type: "int", parser }

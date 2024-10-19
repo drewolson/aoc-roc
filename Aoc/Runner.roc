@@ -1,13 +1,13 @@
 module [run]
 
 import pf.Stdout
-import Aoc.Args exposing [Args]
+import Aoc.Args exposing [Args, Part]
 
-run2023 : U8, U8 -> Task {} _
+run2023 : U8, Part -> Task {} _
 run2023 = \_day, _part ->
     Stdout.line! "2023"
 
-run2024 : U8, U8 -> Task {} _
+run2024 : U8, Part -> Task {} _
 run2024 = \_day, _part ->
     Stdout.line! "2024"
 

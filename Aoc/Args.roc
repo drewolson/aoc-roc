@@ -1,3 +1,5 @@
-module [Args]
+module [Args, Part]
 
-Args : { year : U16, day : U8, part : U8 }
+Part : [One, Two]
+
+Args : { year : U16, day : U8, part : Part }
