@@ -4,13 +4,14 @@ Grid : List (List Str)
 
 Cache : Dict Grid U64
 
-transpose : List (List a) -> List (List a) where a implements Inspect
+transpose : List (List a) -> List (List a)
 transpose = \matrix ->
     aux = \m, acc ->
         when List.mapTry m List.first is
             Ok firsts ->
-                rest = List.map m (\l -> List.dropFirst l 1)
-                aux rest (List.append acc firsts)
+                m
+                |> List.map \l -> List.dropFirst l 1
+                |> aux (List.append acc firsts)
 
             Err _ -> acc
 
@@ -26,12 +27,10 @@ parse : Str -> Grid
 parse = \str ->
     str
     |> Str.split "\n"
-    |> List.map
-        (\l ->
+    |> List.map \l ->
             l
             |> Str.toUtf8
-            |> List.keepOks (\c -> Str.fromUtf8 [c])
-        )
+            |> List.keepOks \c -> Str.fromUtf8 [c]
     |> rotate
 
 tilt : Grid -> Grid
