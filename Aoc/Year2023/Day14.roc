@@ -50,10 +50,7 @@ load : List U8 -> U64
 load = \row ->
     row
     |> List.mapWithIndex \s, i ->
-        if s == 'O' then
-            i + 1
-        else
-            0
+        if s == 'O' then i + 1 else 0
     |> List.sum
 
 runCycles : Grid, U64, Cache -> Grid
