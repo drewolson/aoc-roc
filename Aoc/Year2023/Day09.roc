@@ -13,25 +13,23 @@ part1 : Str -> I64
 part1 = \input ->
     input
     |> Str.split "\n"
-    |> List.map (\l ->
+    |> List.map \l ->
         l
         |> Str.split " "
         |> List.keepOks Str.toI64
         |> nextVal
-    )
     |> List.sum
 
 part2 : Str -> I64
 part2 = \input ->
     input
     |> Str.split "\n"
-    |> List.map (\l ->
+    |> List.map \l ->
         l
         |> Str.split " "
         |> List.keepOks Str.toI64
         |> List.reverse
         |> nextVal
-    )
     |> List.sum
 
 expect

@@ -1,6 +1,6 @@
 module [part1, part2]
 
-Grid : List (List Str)
+Grid : List (List U8)
 
 Cache : Dict Grid U64
 
@@ -13,7 +13,7 @@ transpose = \matrix ->
                 |> List.map \l -> List.dropFirst l 1
                 |> aux (List.append acc firsts)
 
-            Err _ -> acc
+            _ -> acc
 
     matrix |> aux []
 
@@ -27,19 +27,16 @@ parse : Str -> Grid
 parse = \str ->
     str
     |> Str.split "\n"
-    |> List.map \l ->
-            l
-            |> Str.toUtf8
-            |> List.keepOks \c -> Str.fromUtf8 [c]
+    |> List.map Str.toUtf8
     |> rotate
 
 tilt : Grid -> Grid
 tilt = \grid ->
     aux = \{ rocks, l }, s ->
         when s is
-            "O" -> { rocks: List.append rocks "O", l }
-            "." -> { rocks, l: List.append l "." }
-            "#" -> { rocks: [], l: List.concat l (rocks |> List.append "#") }
+            'O' -> { rocks: List.append rocks 'O', l }
+            '.' -> { rocks, l: List.append l '.' }
+            '#' -> { rocks: [], l: List.concat l (rocks |> List.append '#') }
             _ -> { rocks, l }
 
     shiftRocks = \row ->
@@ -49,11 +46,11 @@ tilt = \grid ->
 
     List.map grid shiftRocks
 
-load : List Str -> U64
+load : List U8 -> U64
 load = \row ->
     row
     |> List.mapWithIndex \s, i ->
-        if s == "O" then
+        if s == 'O' then
             i + 1
         else
             0
