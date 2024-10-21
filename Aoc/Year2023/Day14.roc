@@ -38,15 +38,15 @@ tilt : Grid -> Grid
 tilt = \grid ->
     aux = \{ rocks, l }, s ->
         when s is
-            "O" -> { rocks: List.prepend rocks "O", l }
-            "." -> { rocks, l: List.prepend l "." }
-            "#" -> { rocks: [], l: rocks |> List.prepend "#" |> List.concat l }
+            "O" -> { rocks: List.append rocks "O", l }
+            "." -> { rocks, l: List.append l "." }
+            "#" -> { rocks: [], l: List.concat l (rocks |> List.append "#") }
             _ -> { rocks, l }
 
     shiftRocks = \row ->
         { rocks, l } = List.walk row { rocks: [], l: [] } aux
 
-        rocks |> List.concat l |> List.reverse
+        List.concat l rocks
 
     List.map grid shiftRocks
 
