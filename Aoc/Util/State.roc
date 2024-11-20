@@ -1,6 +1,6 @@
 module [
     State,
-    return,
+    pure,
     get,
     put,
     modify,
@@ -11,8 +11,8 @@ module [
 
 State s a := s -> (a, s)
 
-return : a -> State s a
-return = \a ->
+pure : a -> State s a
+pure = \a ->
     @State (\s -> (a, s))
 
 get : State s s
