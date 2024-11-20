@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: drewolson/setup-roc@599fc9d4bd8e804cc87b799a5e4de4153a5588f4
+      - uses: drewolson/setup-roc@2e104473064d68ca174075e720397a2342a2d124
         with:
           roc-version: nightly
       - run: roc test
