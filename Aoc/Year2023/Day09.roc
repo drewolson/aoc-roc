@@ -12,10 +12,10 @@ nextVal = \l ->
 part1 : Str -> I64
 part1 = \input ->
     input
-    |> Str.split "\n"
+    |> Str.splitOn "\n"
     |> List.map \l ->
         l
-        |> Str.split " "
+        |> Str.splitOn " "
         |> List.keepOks Str.toI64
         |> nextVal
     |> List.sum
@@ -23,10 +23,10 @@ part1 = \input ->
 part2 : Str -> I64
 part2 = \input ->
     input
-    |> Str.split "\n"
+    |> Str.splitOn "\n"
     |> List.map \l ->
         l
-        |> Str.split " "
+        |> Str.splitOn " "
         |> List.keepOks Str.toI64
         |> List.reverse
         |> nextVal

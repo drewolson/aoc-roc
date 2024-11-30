@@ -26,7 +26,7 @@ rotate = \grid ->
 parse : Str -> Grid
 parse = \str ->
     str
-    |> Str.split "\n"
+    |> Str.splitOn "\n"
     |> List.map Str.toUtf8
     |> rotate
 
