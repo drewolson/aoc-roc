@@ -32,26 +32,20 @@ part2 = \input ->
         |> nextVal
     |> List.sum
 
-expect
-    input =
-        """
-        0 3 6 9 12 15
-        1 3 6 10 15 21
-        10 13 16 21 30 45
-        """
+testInput : Str
+testInput =
+    """
+    0 3 6 9 12 15
+    1 3 6 10 15 21
+    10 13 16 21 30 45
+    """
 
-    result = part1 input
+expect
+    result = part1 testInput
 
     result == 114
 
 expect
-    input =
-        """
-        0 3 6 9 12 15
-        1 3 6 10 15 21
-        10 13 16 21 30 45
-        """
-
-    result = part2 input
+    result = part2 testInput
 
     result == 2

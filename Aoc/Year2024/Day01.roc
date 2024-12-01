@@ -4,12 +4,13 @@ part1 : Str -> Str
 part1 = \input ->
     input
 
-expect
-    input =
-        """
-        foo
-        """
+testInput : Str
+testInput =
+    """
+    foo
+    """
 
-    result = part1 input
+expect
+    result = part1 testInput
 
     result == "foo"

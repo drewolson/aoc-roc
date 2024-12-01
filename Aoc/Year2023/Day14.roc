@@ -93,40 +93,27 @@ part2 = \input ->
     |> List.map load
     |> List.sum
 
-expect
-    input =
-        """
-        O....#....
-        O.OO#....#
-        .....##...
-        OO.#O....O
-        .O.....O#.
-        O.#..O.#.#
-        ..O..#O..O
-        .......O..
-        #....###..
-        #OO..#....
-        """
+testInput : Str
+testInput =
+    """
+    O....#....
+    O.OO#....#
+    .....##...
+    OO.#O....O
+    .O.....O#.
+    O.#..O.#.#
+    ..O..#O..O
+    .......O..
+    #....###..
+    #OO..#....
+    """
 
-    result = part1 input
+expect
+    result = part1 testInput
 
     result == 136
 
 expect
-    input =
-        """
-        O....#....
-        O.OO#....#
-        .....##...
-        OO.#O....O
-        .O.....O#.
-        O.#..O.#.#
-        ..O..#O..O
-        .......O..
-        #....###..
-        #OO..#....
-        """
-
-    result = part2 input
+    result = part2 testInput
 
     result == 64
