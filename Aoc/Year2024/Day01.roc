@@ -10,7 +10,7 @@ parse = \input ->
         |> Str.splitOn "\n"
         |> List.map \s ->
             s
-            |> Str.splitOn ("   ")
+            |> Str.splitOn "   "
             |> List.keepOks Str.toI64
         |> ListUtil.transpose
         |> List.map List.sortAsc
@@ -23,7 +23,8 @@ part1 : Str -> I64
 part1 = \input ->
     (left, right) = parse input
 
-    List.map2 left right \l, r -> Num.abs (l - r)
+    left
+    |> List.map2 right \l, r -> Num.abs (l - r)
     |> List.sum
 
 part2 : Str -> I64
