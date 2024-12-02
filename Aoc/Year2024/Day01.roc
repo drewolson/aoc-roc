@@ -33,13 +33,13 @@ part2 : Str -> I64
 part2 = \input ->
     p = parse input
 
-    map = List.walk p.right (Dict.empty {}) \d, i ->
-        prev = Dict.get d i |> Result.withDefault 0
+    counts = List.walk p.right (Dict.empty {}) \d, i ->
+        prev = d |> Dict.get i |> Result.withDefault 0
         Dict.insert d i (prev + 1)
 
     p.left
     |> List.map \i ->
-        mul = map |> Dict.get i |> Result.withDefault 0
+        mul = counts |> Dict.get i |> Result.withDefault 0
         i * mul
     |> List.sum
 
